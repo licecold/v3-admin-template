@@ -1,24 +1,41 @@
 import request from '@/utils/request'
+import { getToken } from '@/utils/auth'
+const prefix = process.env.VUE_APP_AAA_API
 
-export function login(data) {
+export function login({ account, password }) {
   return request({
-    url: '/vue-admin-template/user/login',
+    url: prefix + '/login/password/v2',
     method: 'post',
-    data
-  })
-}
-
-export function getInfo(token) {
-  return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
+    data: {
+      account,
+      password
+    }
   })
 }
 
 export function logout() {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
+    url: prefix + '/logout'
+  })
+}
+
+export function getUserInfo() {
+  return request({
+    url: prefix + '/queryUserByToken',
+    method: 'post',
+    data: {
+      token: getToken()
+    }
+  })
+}
+
+export function getAccessRoute() {
+  return request({
+    url: prefix + '/getPageAuthByUserAndProduct',
+    method: 'post',
+    data: {
+      token: getToken(),
+      productId: process.env.VUE_APP_ENV === 'production' ? 're_web' : 're-web'
+    }
   })
 }

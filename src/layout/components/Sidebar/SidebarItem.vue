@@ -1,16 +1,43 @@
 <template>
-  <div v-if="!item.hidden">
-    <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
+  <div v-if="!item.hidden" class="sidebar-item">
+    <template v-if="item.isCategory">
+      <div class="side-category">
+        <span>{{ item.category }}</span>
+      </div>
+    </template>
+
+    <template
+      v-else-if="
+        hasOneShowingChild(item.children, item) &&
+          (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+          !item.alwaysShow
+      "
+    >
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
+        <el-menu-item
+          :index="resolvePath(onlyOneChild.path)"
+          :class="{ 'submenu-title-noDropdown': !isNest }"
+        >
+          <item
+            :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
+            :title="onlyOneChild.meta.title"
+          />
         </el-menu-item>
       </app-link>
     </template>
 
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <el-submenu
+      v-else
+      ref="subMenu"
+      :index="resolvePath(item.path)"
+      popper-append-to-body
+    >
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
+        <item
+          v-if="item.meta"
+          :icon="item.meta && item.meta.icon"
+          :title="item.meta.title"
+        />
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -62,11 +89,44 @@ export default {
         if (item.hidden) {
           return false
         } else {
-          // Temp set(will be used if only has one showing child)
           this.onlyOneChild = item
           return true
         }
       })
+      if (children.length === 1 && Reflect.has(this.onlyOneChild, 'children')) {
+        this.onlyOneChild.children = (function recursion(list) {
+          return list.filter(v => {
+            if (Reflect.has(v, 'children')) {
+              recursion(v.children)
+            }
+            return !v.hidden
+          })
+        })(this.onlyOneChild.children)
+      }
+      // let showingChildren
+      // if (children.length === 1) {
+      //   if (!children[0]?.hidden) {
+      //     this.onlyOneChild = children[0]
+      //   }
+      //   showingChildren = (function recursion(list) {
+      //     return list.filter(v => {
+      //       if (Reflect.has(v, 'children')) {
+      //         recursion(v.children)
+      //       }
+      //       return !v.hidden
+      //     })
+      //   })(children[0]?.children || [])
+      // } else {
+      //   showingChildren = children.filter(item => {
+      //     if (item.hidden) {
+      //       return false
+      //     } else {
+      //       // Temp set(will be used if only has one showing child)
+      //       this.onlyOneChild = item
+      //       return true
+      //     }
+      //   })
+      // }
 
       // When there is only one child router, the child router is displayed by default
       if (showingChildren.length === 1) {
@@ -75,7 +135,7 @@ export default {
 
       // Show parent if there are no child router to display
       if (showingChildren.length === 0) {
-        this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
+        this.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return true
       }
 
@@ -93,3 +153,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+::v-deep {
+  .side-category {
+    padding: 20px 0 10px;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 20px;
+  }
+}
+</style>
