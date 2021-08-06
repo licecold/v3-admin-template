@@ -40,13 +40,10 @@ export default {
         $store
           .dispatch('user/login', params)
           .then(() => {
-            console.log(redirect)
-            console.log(query)
-            debugger
-            // $router.push({
-            //   path: redirect || '/',
-            //   query
-            // })
+            $router.push({
+              path: redirect || '/',
+              query
+            })
           })
           .finally(() => {
             loading.value = false

@@ -8,6 +8,7 @@
   }
 
   .sidebar-container {
+    user-select: none;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
@@ -76,7 +77,21 @@
       }
     }
 
-    .is-active>.el-submenu__title {
+    .el-menu-item, .el-submenu__title {
+      height: 42px;
+      line-height: 42px;
+    }
+    
+
+    .is-active.submenu-title-noDropdown{
+      background: $menuActiveBg;
+    }
+
+    .is-active > .el-submenu__title,
+    .is-active > .el-submenu__title i,
+    .is-active > .el-submenu__title i::before,
+    .is-active > i,
+    .is-active > i::before {
       color: $subMenuActiveText !important;
     }
 
@@ -87,6 +102,10 @@
 
       &:hover {
         background-color: $subMenuHover !important;
+      }
+
+      &.is-active {
+        background: $menuActiveBg;
       }
     }
   }
@@ -203,6 +222,7 @@
       // you can use $subMenuHover
       background-color: $menuHover !important;
     }
+
   }
 
   // the scroll bar appears when the subMenu is too long

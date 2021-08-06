@@ -1,0 +1,28 @@
+p.hoc-table-tip {
+  margin-bottom: 10px;
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #999999;
+  & > span {
+    color: #000;
+  }
+}
+.el-pagination {
+  display: inline-block;
+  font-weight: normal;
+  .el-input--mini .el-input__inner,
+  .el-input__inner {
+    font-size: 12px; /*no*/
+    height: 24px; /*no*/
+    line-height: 24px; /*no*/
+  }
+  .el-input__suffix {
+    transform: scale(0.9);
+  }
+  &.is-background .el-pager li.active {
+    font-weight: bold;
+  }
+  .el-pagination__jump {
+    font-size: 12px; /*no*/
+  }
+}

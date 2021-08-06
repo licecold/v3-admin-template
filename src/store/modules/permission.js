@@ -64,7 +64,7 @@ export function filterAsyncRoutes(routes, permissionRoutes, role) {
   )
   accessedRoutes.unshift({
     path: '/',
-    redirect: accessedRoutes[0].name
+    redirect: accessedRoutes[0].path
   })
   return {
     accessedRoutes,
@@ -120,7 +120,7 @@ const actions = {
         // debugger
         accessedRoutes.unshift({
           path: '/',
-          redirect: accessedRoutes[0].name
+          redirect: accessedRoutes[0].path
         })
       } else {
         const { content: permissionRoutes } = await getAccessRoute()

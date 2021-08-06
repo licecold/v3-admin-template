@@ -1,7 +1,6 @@
 <script>
 export default {
   name: 'MenuItem',
-  functional: true,
   props: {
     icon: {
       type: String,
@@ -12,23 +11,22 @@ export default {
       default: ''
     }
   },
-  render(h, context) {
-    const { icon, title } = context.props
+  setup(props) {
+    const { icon, title } = props
     const vnodes = []
-
     if (icon) {
       if (icon.includes('el-icon')) {
         vnodes.push(<i class={[icon, 'sub-el-icon']} />)
       } else {
         // vnodes.push(<svg-icon icon-class={icon}/>)
-        vnodes.push(<i class={`mr-6 icon-${icon}`}/>)
+        vnodes.push(<i class={`mr-6 icon-${icon}`} />)
       }
     }
 
     if (title) {
-      vnodes.push(<span slot='title'>{(title)}</span>)
+      vnodes.push(<span slot='title'>{title}</span>)
     }
-    return vnodes
+    return () => vnodes
   }
 }
 </script>

@@ -17,7 +17,7 @@
           to="/"
         >
           <img v-if="logo" :src="logo" class="sidebar-logo">
-          <span>规则引擎管理系统</span>
+          <span>xxxxx</span>
         </router-link>
       </transition>
     </div>

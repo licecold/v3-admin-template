@@ -1,0 +1,104 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?lu14lf');
+  src:  url('fonts/icomoon.eot?lu14lf#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?lu14lf') format('truetype'),
+    url('fonts/icomoon.woff?lu14lf') format('woff'),
+    url('fonts/icomoon.svg?lu14lf#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-plus:before {
+  content: "\e909";
+}
+.icon-feature:before {
+  content: "\e914";
+  color: #8a98ac;
+}
+.icon-rule:before {
+  content: "\e90f";
+  color: #8a98ac;
+}
+.icon-list:before {
+  content: "\e910";
+  color: #8a98ac;
+}
+.icon-data:before {
+  content: "\e911";
+  color: #8a98ac;
+}
+.icon-system:before {
+  content: "\e912";
+  color: #8a98ac;
+}
+.icon-dashboard:before {
+  content: "\e913";
+  color: #8a98ac;
+}
+.icon-delete:before {
+  content: "\e90a";
+}
+.icon-upload .path1:before {
+  content: "\e90b";
+  color: rgb(216, 216, 216);
+  opacity: 0.0100;
+}
+.icon-upload .path2:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: rgb(90, 102, 119);
+}
+.icon-upload .path3:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: rgb(90, 102, 119);
+}
+.icon-upload .path4:before {
+  content: "\e90e";
+  margin-left: -1em;
+  color: rgb(90, 102, 119);
+}
+.icon-leftbar_3:before {
+  content: "\e901";
+}
+.icon-dimension:before {
+  content: "\e902";
+}
+.icon-govern:before {
+  content: "\e903";
+}
+.icon-result:before {
+  content: "\e904";
+}
+.icon-relation:before {
+  content: "\e905";
+}
+.icon-database:before {
+  content: "\e906";
+}
+.icon-statistics:before {
+  content: "\e907";
+}
+.icon-asset:before {
+  content: "\e908";
+}
+.icon-question:before {
+  content: "\e900";
+}

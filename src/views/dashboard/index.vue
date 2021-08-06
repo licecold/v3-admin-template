@@ -1,18 +1,40 @@
-<template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
-  </div>
-</template>
-
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'Dashboard',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
+  setup() {
+    const handleCommand = () => {}
+
+    return () => (
+      <div>
+        <el-dropdown
+          onCommand={handleCommand}
+          trigger='click'
+          v-slots={{
+            default: () => (
+              <span class='el-dropdown-link'>
+                下拉菜单<i class='el-icon-arrow-down el-icon--right'></i>
+              </span>
+            ),
+            dropdown: () => {
+              debugger
+              return (
+                <el-dropdown-menu>
+                  <el-dropdown-item command='a'>黄金糕</el-dropdown-item>
+                  <el-dropdown-item command='b'>狮子头</el-dropdown-item>
+                  <el-dropdown-item command='c'>螺蛳粉</el-dropdown-item>
+                  <el-dropdown-item command='d' disabled>
+                    双皮奶
+                  </el-dropdown-item>
+                  <el-dropdown-item command='e' divided>
+                    蚵仔煎
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              )
+            }
+          }}
+        ></el-dropdown>
+      </div>
+    )
   }
 }
 </script>

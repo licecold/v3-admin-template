@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App'
 
 import ElementPlus from 'element-plus'
-import 'element-plus/lib/theme-chalk/index.css'
+import '@/styles/theme/index.css'
 
 import 'normalize.css/normalize.css'
 import '@/styles/index.scss' // global css

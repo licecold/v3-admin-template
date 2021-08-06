@@ -1,18 +1,37 @@
-<template>
-  <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
-    </transition>
-  </section>
-</template>
-
 <script>
+import { RouterView, useRoute } from 'vue-router'
+import { Transition, KeepAlive, computed, ref, reactive } from 'vue'
 export default {
   name: 'AppMain',
-  computed: {
-    key() {
-      return this.$route.path
+  setup() {
+    const $route = useRoute()
+    const key = computed(() => $route.path)
+    const slots = ref(null)
+    // TODO: 通过asyncRoutes 获取对应缓存路由
+    const cacheList = reactive([])
+    return {
+      key,
+      slots,
+      cacheList
     }
+  },
+  render() {
+    return (
+      <section class='app-main'>
+        <RouterView
+          key={this.key}
+          v-slots={{
+            default: ({ Component }) => (
+              <Transition>
+                <KeepAlive include={this.cacheList}>
+                  <Component />
+                </KeepAlive>
+              </Transition>
+            )
+          }}
+        ></RouterView>
+      </section>
+    )
   }
 }
 </script>
@@ -25,7 +44,7 @@ export default {
   position: relative;
   overflow: hidden;
 }
-.fixed-header+.app-main {
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>

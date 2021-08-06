@@ -1,15 +1,17 @@
-@import './variables.scss';
-@import './mixin.scss';
-@import './transition.scss';
-@import './element-ui.scss';
-@import './sidebar.scss';
+@import "./variables.scss";
+@import "./mixin.scss";
+@import "./transition.scss";
+@import "./element-ui.scss";
+@import "./sidebar.scss";
+@import url("./font/style.css");
 
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
 }
 
 label {
@@ -19,6 +21,21 @@ label {
 html {
   height: 100%;
   box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5{
+  margin: 0;
+}
+
+ul,
+li,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }
 
 #app {
@@ -61,5 +78,170 @@ div:focus {
 
 // main-container global css
 .app-container {
-  padding: 20px;
+  padding: 0 20px 20px 20px;
+  &.full-height {
+    height: calc(100vh - 50px - 70px);
+  }
 }
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-row-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-col-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-spacearound {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex-spacebet {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.bolder {
+  font-weight: bolder;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.label {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #394961;
+  margin-right: 10px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.link {
+  cursor: pointer;
+  color: #029488;
+  user-select: none;
+  &:hover {
+    color: #fe3b30;
+  }
+  &.disabled {
+    color: #8a98ac;
+    cursor: not-allowed;
+    &:hover {
+      color: #8a98ac;
+    }
+  }
+}
+
+@for $v from 0 through 100 {
+  .p-#{$v} {
+    padding: #{$v}px;
+  }
+  .pt-#{$v} {
+    padding-top: #{$v}px;
+  }
+  .pb-#{$v} {
+    padding-bottom: #{$v}px;
+  }
+  .pl-#{$v} {
+    padding-left: #{$v}px;
+  }
+  .pr-#{$v} {
+    padding-right: #{$v}px;
+  }
+  .m-#{$v} {
+    margin: #{$v}px;
+  }
+  .mt-#{$v} {
+    margin-top: #{$v}px;
+  }
+  .mb-#{$v} {
+    margin-bottom: #{$v}px;
+  }
+  .ml-#{$v} {
+    margin-left: #{$v}px;
+  }
+  .mr-#{$v} {
+    margin-right: #{$v}px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #c7ced7;
+}
+
+// ::-webkit-scrollbar-track {
+//   /*滚动条里面轨道*/
+//   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+//   border-radius: 1px;
+//   background: #ededed;
+// }
